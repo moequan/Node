@@ -25,20 +25,96 @@
 
 //Chaining promises
 
-const promise1 = new Promise((resolve, reject) => {
-    resolve(`Promise 1 is  resolved`);
-});
-const promise2 = new Promise((resolve, reject) => {
-    resolve(`Promise 2 is  resolved`);
-});
-const promise3 = new Promise((resolve, reject) => {
-    resolve(`Promise 3 is one resolved`);
+// const promise1 = new Promise((resolve, reject) => {
+//     setTimeout(()=> {
+//         resolve(`Promise 1 is  resolved`);
+//     },2000)
+
+// });
+// const promise2 = new Promise((resolve, reject) => {
+//     setTimeout(()=> {
+//         resolve(`Promise 2 is  resolved`);
+//     },2000)
+
+// });
+// const promise3 = new Promise((resolve, reject) => {
+//     setTimeout(()=> {
+//         resolve(`Promise 3 is  resolved`);
+//     },2000)
+
+// });
+
+// promise1
+//     .then(data => {
+//         console.log(data);
+//         return promise2
+//     }).then(data =>{
+//         console.log(data)
+//         return promise3
+//     }).then(data=>{
+//         console.log(data)
+//     })
+
+// Promise.all([promise1,promise2,promise3]).then(data => {
+//     console.log(data)
+// });
+
+//ASYNC/WAIT
+
+// printAMessage = () => {
+//     return new Promise(resolve => {
+//         resolve(`I am the message that should be printed`);
+//     });
+// };
+// printAMessage().then(data => {
+//     console.log(data);
+// });
+
+// callMyFunction = () => {
+//     printAMessage().then(data => {
+//         console.log(data);
+//     });
+// }
+// callMyFunction();
+
+// callMyFunction = async () => {
+//     const msg = await printAMessage();
+//     console.log(`Message : `, msg)
+// };
+// callMyFunction();
+
+//Promisify
+
+// const fs = require("fs");
+// const {
+//     promisify
+// } = require("util");
+// console.log(promisify)
+
+// fs.readFile("./data.txt", "utf8", (err,data)=>{
+//     if(err) throw err;
+//     console.log(data);
+// });
+
+// const myReadFileAsync = promisify(fs.readFile);
+
+// myReadFileAsync("./data.txt", "utf8").then(data => {
+//     console.log(data)
+// });
+
+//RECAP
+
+const randomNumber= Math.random();
+
+const promise = new Promise((resolve, reject) => {
+  if (randomNumber > 0.5) resolve(`We are doing great! ${randomNumber}`);
+  else reject("Ufff, bad man!");
 });
 
-promise1
-    .then(data => {
-        console.log(data);
-        return promise2
-    }).then(data2 =>{
-        console.log(data2)
-    })
+promise.then((data)=>{
+    console.log(data)
+});
+promise.catch((err)=>{
+    console.log(err)
+});
+
